@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* CSS Animation */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(50px); /* Customize the direction */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  animation: appear 1s forwards; /* Make the animation last 1s */
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #040404;
+  color: #FFFFF0;
+}
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide{
+  scrollbar-width: none;
+}
+
+/* Add this CSS to your stylesheets (e.g., globals.css or a specific CSS module) */
+.transition-opacity {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Optional: You can use this class for the exit state */
+.opacity-0 {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction when faded out */
+}
+
+.opacity-100 {
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction when fully visible */
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #B68D3B; /* Background of the track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded edges */
+  border: 3px solid #f1f1f1; /* Optional padding around thumb */
+}
+
+/* Hover effect */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color when hovering */
+}
+.custom-scrollbar {
+  scrollbar-width: thin; /* Options: auto, thin, none */
+  scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
+}
+/* Add this in your global CSS */
+
