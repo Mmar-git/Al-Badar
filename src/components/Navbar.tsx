@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/Logo.png"
               alt=""
               width={1200}
               height={1200}
@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className="xl:w-1/2 flex items-center">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/Logo.png"
               alt=""
               width={1200}
               height={1200}

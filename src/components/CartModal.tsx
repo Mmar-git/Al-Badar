@@ -1,18 +1,36 @@
 "use client";
-import Image from "next/image";
 import { useWixClient } from "@/hooks/useWixClient";
 import { useEffect } from "react";
 import { useCartStore } from "@/hooks/useCartStore";
-import { media as wixMedia } from "@wix/sdk";
 import { currentCart } from "@wix/ecom";
 
 const CartModal = () => {
-  // const cartItems = true;
   const wixClient = useWixClient();
   const { cart, isLoading, removeItem } = useCartStore();
 
   const handleCheckout = async () => {
     try {
+      // Check if cart.lineItems exists and has valid items
+      if (!cart?.lineItems || cart.lineItems.length === 0) {
+        alert("Your cart is empty. Please add items before proceeding.");
+        return;
+      }
+
+      // Check for valid cart items and ensure each item has an appId
+      const missingAppIdItems = cart.lineItems.filter(
+        (item) => !item.catalogReference?.appId
+      );
+      if (missingAppIdItems.length > 0) {
+        console.error(
+          "Missing appId for the following items:",
+          missingAppIdItems
+        );
+        alert(
+          "One or more items are missing product information. Please try again."
+        );
+        return;
+      }
+
       const checkout =
         await wixClient.currentCart.createCheckoutFromCurrentCart({
           channelType: currentCart.ChannelType.WEB,
@@ -31,9 +49,11 @@ const CartModal = () => {
         window.location.href = redirectSession.fullUrl;
       }
     } catch (err) {
-      console.log(err);
+      console.error("Error during checkout:", err);
+      alert("There was an error with your checkout. Please try again later.");
     }
   };
+
   return (
     <div
       className="w-max absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-black ring-1 ring-yellow top-12 right-0 flex flex-col gap-6 z-20"
@@ -41,8 +61,8 @@ const CartModal = () => {
         fontFamily: '"Alumni Sans Pinstripe", serif',
       }}
     >
-      {!cart.lineItems ? (
-        <div className="">Cart is Empty</div>
+      {!cart?.lineItems || cart.lineItems.length === 0 ? (
+        <div>Cart is Empty</div>
       ) : (
         <>
           <h2 className="text-2xl">Shopping Cart</h2>
