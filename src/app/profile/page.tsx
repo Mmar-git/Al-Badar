@@ -91,7 +91,7 @@ const ProfilePage = async () => {
                 <Link
                   href={`/orders/${order._id}`}
                   key={order._id}
-                  className="flex justify-between px-2 py-6 rounded-md hover:bg-green-50 even:bg-slate-100"
+                  className="flex justify-between px-2 py-6 rounded-md hover:ring-1 hover:ring-yellow even:bg-slate-100"
                 >
                   <span className="w-1/4">
                     {order._id?.substring(0, 10)}...
