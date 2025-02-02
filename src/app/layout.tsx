@@ -8,8 +8,9 @@ import { WixClientContextProvider } from "@/context/wixContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Al Badar",
-  description: "A complete e-commerce application with Next.js and Wix",
+  title: "Al Badar - Premium Artisanal Attar",
+  description:
+    "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients. Elevate your senses with our authentic, exclusive fragrances crafted for luxury and distinction.",
 };
 
 export default function RootLayout({
