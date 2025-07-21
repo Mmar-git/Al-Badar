@@ -95,7 +95,7 @@ const Slider2 = () => {
             Spirituality: Our roots lie in timeless principles. We draw
             inspiration from Islamic art, ethics, and culture, weaving them into
             products that uplift both body and soul. Craftsmanship & Quality:
-            Whether it’s a bottle of handcrafted attar, a carefully sewn
+            Whether it&apos;s a bottle of handcrafted attar, a carefully sewn
             garment, or a curated lifestyle item — expect excellence in every
             piece. Purposeful Living: Al-Badar stands for more than luxury. We
             aim to offer experiences that reflect who you are — grounded,
