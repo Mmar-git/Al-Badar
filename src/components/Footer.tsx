@@ -19,7 +19,7 @@ const link2 = [
 const link3 = [
   { id: 1, label: "Fragrance Consultation", url: "/consultation" },
   { id: 2, label: "Fragrance Care Tips", url: "/tips" },
-  { id: 3, label: "Fragrance Guide", url: "/guide" },
+  // { id: 3, label: "Fragrance Guide", url: "/guide" },
 ];
 const link4 = [
   { id: 1, label: "Privacy Policy", url: "/privacy" },
@@ -155,7 +155,7 @@ const Footer = () => {
             <div className="flex flex-col gap-2 mt-4">
               <Link href="/consultation">Fragrance Consultation</Link>
               <Link href="/tips">Fragrance Care Tips</Link>
-              <Link href="/guide">Fragrance Guide</Link>
+              {/* <Link href="/guide">Fragrance Guide</Link> */}
             </div>
           </div>
           <div className="flex flex-col">

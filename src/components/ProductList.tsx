@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 const Pagination = dynamic(() => import("../components/Pagination"), {
   ssr: false,
 });
-const PRODUCT_PER_PAGE = 8;
+const PRODUCT_PER_PAGE = 16;
 const ProductList = async ({
   categoryId,
   limit,

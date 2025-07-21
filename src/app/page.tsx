@@ -8,6 +8,7 @@ import { Suspense, useContext, useEffect } from "react";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Slider2 from "@/components/Slider2";
 import ExploreProd from "@/components/ExploreProd";
+import FeaturedProducts from "@/components/FeaturedProducts";
 
 const HomePage = async () => {
   // const wixClient = useWixClient();
@@ -52,6 +53,22 @@ const HomePage = async () => {
           </a>
         </div>
       </div>
+      <div className="p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
+        <h1
+          className="text-3xl"
+          style={{
+            fontFamily: '"Alumni Sans Pinstripe", serif',
+          }}
+        >
+          Featured Products
+        </h1>
+        <Suspense fallback={<Skeleton />}>
+          <FeaturedProducts
+            categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
+            limit={4}
+          />
+        </Suspense>
+      </div>
       <Slider2 />
       <div className="h-26 px-4 py-4 bg-[#040404]">
         <div className="flex flex-col items-center text-center max-w-full justify-center bg-[#040404] border border-[#B68D3B] overflow-hidden p-4 gap-0.5">
@@ -82,7 +99,15 @@ const HomePage = async () => {
           />
         </Suspense>
       </div> */}
-      <div className="">
+      <div className="p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
+        <h1
+          className="text-3xl"
+          style={{
+            fontFamily: '"Alumni Sans Pinstripe", serif',
+          }}
+        >
+          The House of Al-Badar
+        </h1>
         <Suspense fallback={<Skeleton />}>
           <Categories />
         </Suspense>
@@ -140,7 +165,7 @@ const HomePage = async () => {
         </div>
         <Suspense fallback={<Skeleton />}>
           <ExploreProd
-            categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
+            categoryId={process.env.EXPLORE_PRODUCTS_CATEGORY_ID!}
             limit={3}
           />
         </Suspense>
@@ -179,7 +204,7 @@ const HomePage = async () => {
         <div className="p-8">
           <Suspense fallback={<Skeleton />}>
             <ExploreProd
-              categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
+              categoryId={process.env.EXPLORE_PRODUCTS_CATEGORY_ID!}
               limit={2}
             />
           </Suspense>

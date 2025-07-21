@@ -27,47 +27,45 @@ const Categories = async () => {
       },
     };
 
-  // Filter out the "all-products" category
-  const filteredCategories = cats.items.filter(
-    (item) => item.slug?.toLowerCase() !== "all-products"
-  );
+  // ✅ Filter to include only categories present in labelMapping
+  const filteredCategories = cats.items.filter((item) => {
+    const slug = item.slug?.toLowerCase().trim().replace(/\s+/g, "-") || "";
+    return slug in labelMapping;
+  });
 
   return (
     <div
-      className="scrollbar-hide"
+      className="scrollbar-hide py-12"
       style={{
         fontFamily: '"Alumni Sans Pinstripe", serif',
       }}
     >
-      <div className="flex flex-wrap">
+      <div className="flex gap-x-8 gap-y-16 justify-between flex-wrap">
         {filteredCategories.map((item) => {
           const normalizedSlug =
             item.slug?.toLowerCase().trim().replace(/\s+/g, "-") || "";
 
-          // Check if the current slug exists in the labelMapping
           const categoryInfo = labelMapping[normalizedSlug];
-          const heading = categoryInfo?.heading || item.name; // Default to item.name if no mapping
+          const heading = categoryInfo?.heading || item.name;
           const description =
             categoryInfo?.description || "Description not available";
 
           return (
             <Link
               href={`/list?cat=${item.slug || ""}`}
-              className="flex w-1/2 sm:w-1/2 lg:w-1/2 xl:w-1/2"
+              className="w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%] group"
               key={item._id}
             >
-              <div className="relative bg-slate-100 w-full h-[36rem] overflow-hidden group">
-                {/* Image */}
+              <div className="relative w-full h-[28rem]">
                 <Image
                   src={`${
                     item.media?.mainMedia?.image?.url || "/cat.png"
                   }?q=100&w=1200&h=2400`}
                   alt="image"
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover rounded-md transition-transform duration-500"
                 />
 
-                {/* Overlay and Text */}
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 transition-opacity duration-500 ease-in-out flex items-center justify-center">
                   <span className="text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out text-center">
                     <h1 className="text-6xl">{heading}</h1>

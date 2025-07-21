@@ -2,7 +2,7 @@
 
 import { createClient, OAuthStrategy } from "@wix/sdk";
 import { products, collections } from "@wix/stores";
-import { currentCart } from "@wix/ecom";
+import { currentCart, cart, checkout } from "@wix/ecom"; // ✅ Add these
 import Cookies from "js-cookie";
 import { createContext, ReactNode } from "react";
 import { redirects } from "@wix/redirects";
@@ -15,6 +15,8 @@ const wixClient = createClient({
     collections,
     currentCart,
     redirects,
+    cart, // ✅ added
+    checkout, // ✅ added
   },
   auth: OAuthStrategy({
     clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
