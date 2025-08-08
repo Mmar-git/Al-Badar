@@ -30,7 +30,6 @@ const Add = ({
   // 2. This is the final, correct "Buy Now" logic
   const handleBuyNow = async () => {
     try {
-      // Create the line item object for the product to buy.
       const lineItemsToBuy = [
         {
           catalogReference: {
@@ -42,17 +41,28 @@ const Add = ({
         },
       ];
 
-      // Call the store to replace the cart's contents.
-      // This updates the server AND your local state atomically.
-      await replaceCart(wixClient, lineItemsToBuy);
+      // Try to get the current cart
+      const existingCart = await wixClient.currentCart
+        .getCurrentCart()
+        .catch(() => null);
 
-      // Create a checkout from the now-correct current cart.
+      if (!existingCart || !existingCart.lineItems) {
+        // No cart found — create one with the item
+        await wixClient.currentCart.addToCurrentCart({
+          lineItems: lineItemsToBuy,
+        });
+      } else {
+        // Replace cart contents if cart exists
+        await replaceCart(wixClient, lineItemsToBuy);
+      }
+
+      // Now create checkout from the current cart
       const checkoutResponse =
         await wixClient.currentCart.createCheckoutFromCurrentCart({
-          channelType: currentCart.ChannelType.WEB,
+          channelType: wixClient.currentCart.ChannelType.WEB,
         });
 
-      // Redirect to the checkout page.
+      // Redirect to checkout
       const { redirectSession } =
         await wixClient.redirects.createRedirectSession({
           ecomCheckout: { checkoutId: checkoutResponse.checkoutId! },
