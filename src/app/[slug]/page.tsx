@@ -72,8 +72,12 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           {product.variants && product.productOptions ? (
             <CustomizeProducts
               productId={product._id!}
-              variants={product.variants}
-              productOptions={product.productOptions}
+              productName={product.name || "Unnamed Product"}
+              basePrice={
+                product.price?.discountedPrice || product.price?.price || 0
+              }
+              variants={product.variants || []}
+              productOptions={product.productOptions || []}
             />
           ) : (
             <Add

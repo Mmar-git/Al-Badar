@@ -6,10 +6,14 @@ import Add from "./Add";
 
 const CustomizeProducts = ({
   productId,
+  productName,
+  basePrice,
   variants,
   productOptions,
 }: {
   productId: string;
+  productName: string;
+  basePrice: number;
   variants: products.Variant[];
   productOptions: products.ProductOption[];
 }) => {
@@ -72,8 +76,8 @@ const CustomizeProducts = ({
                   className="ring-1 ring-lama text-[#FFFFF0] text-xl rounded-md py-1 px-4 text-sm"
                   style={{
                     cursor: "pointer",
-                    backgroundColor: "#B68D3B",
-                    boxShadow: disabled ? "none" : "",
+                    backgroundColor: selected ? "#B68D3B" : "#333",
+                    opacity: disabled ? 0.5 : 1,
                   }}
                   key={choice.description}
                   onClick={clickHandler}
@@ -85,31 +89,17 @@ const CustomizeProducts = ({
           </ul>
         </div>
       ))}
+
+      {/* ✅ Price always comes from product, not variant */}
       <Add
         productId={productId}
         variantId={
           selectedVariant?._id || "00000000-0000-0000-0000-000000000000"
         }
         stockNumber={selectedVariant?.stock?.quantity || 0}
+        productName={productName}
+        productPrice={basePrice} // ✅ FIX: only use product base price
       />
-      {/* COLOR */}
-
-      {/* <ul className="flex items-center gap-3">
-        <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-blue-500"></li>
-        <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-not-allowed relative bg-green-500">
-          <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-        </li>
-      </ul> */}
-      {/* OTHER */}
-      {/* <h4 className="font-medium">Choose a size</h4>
-      <ul className="flex items-center gap-3">
-        <li className="ring-1 ring-lama text-white bg-lama rounded-md py-1 px-4 text-sm cursor-pointer">
-          Medium
-        </li>
-        <li className="ring-1 ring-pink-200 text-white bg-pink-200 rounded-md py-1 px-4 text-sm cursor-not-allowed">
-          Large
-        </li>
-      </ul> */}
     </div>
   );
 };
