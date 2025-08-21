@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Skeleton from "@/components/Skeleton";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import { Suspense } from "react";
+import FacebookPixelEvents from "@/components/FacebookPixelEvents";
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
 
@@ -26,6 +27,17 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
   }
   return (
     <div className="flex flex-col px-4 md:px-8 mt-8 lg:px-16 xl:px-32 2xl:px-64 relative gap-8">
+      <FacebookPixelEvents
+        product={{
+          _id: product._id ?? "unknown",
+          name: product.name ?? "Unnamed Product",
+          price: {
+            discountedPrice: product.price?.discountedPrice ?? undefined,
+            price: product.price?.price ?? undefined,
+          },
+        }}
+      />
+
       <div
         className="flex flex-col lg:flex-row gap-16"
         style={{
@@ -68,6 +80,10 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
               productId={product._id!}
               variantId="00000000-0000-0000-0000-000000000000"
               stockNumber={product.stock?.quantity || 0}
+              productName={product.name || "Unnamed Product"} // ✅ new
+              productPrice={
+                product.price?.discountedPrice || product.price?.price || 0
+              } // ✅ new
             />
           )}
           <div className="h-[1px] bg-[#FFFFF0]" />

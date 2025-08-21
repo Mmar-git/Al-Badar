@@ -2,7 +2,7 @@
 
 import { createClient, OAuthStrategy } from "@wix/sdk";
 import { products, collections } from "@wix/stores";
-import { currentCart, cart, checkout } from "@wix/ecom"; // ✅ Add these
+import { currentCart, cart, checkout, orders } from "@wix/ecom"; // 👈 add orders here
 import Cookies from "js-cookie";
 import { createContext, ReactNode } from "react";
 import { redirects } from "@wix/redirects";
@@ -15,8 +15,9 @@ const wixClient = createClient({
     collections,
     currentCart,
     redirects,
-    cart, // ✅ added
-    checkout, // ✅ added
+    cart,
+    checkout,
+    orders, // 👈 register orders module
   },
   auth: OAuthStrategy({
     clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
@@ -26,6 +27,7 @@ const wixClient = createClient({
     },
   }),
 });
+
 export type WixClient = typeof wixClient;
 export const WixClientContext = createContext<WixClient>(wixClient);
 

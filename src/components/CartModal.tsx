@@ -1,8 +1,8 @@
 "use client";
 import { useWixClient } from "@/hooks/useWixClient";
-import { useEffect } from "react";
 import { useCartStore } from "@/hooks/useCartStore";
 import { currentCart } from "@wix/ecom";
+import { event as fbqEvent } from "@/lib/fbpixel"; // ✅ correct import
 
 const CartModal = () => {
   const wixClient = useWixClient();
@@ -10,25 +10,17 @@ const CartModal = () => {
 
   const handleCheckout = async () => {
     try {
-      // Check if cart.lineItems exists and has valid items
       if (!cart?.lineItems || cart.lineItems.length === 0) {
         alert("Your cart is empty. Please add items before proceeding.");
         return;
       }
 
-      // Check for valid cart items and ensure each item has an appId
-      const missingAppIdItems = cart.lineItems.filter(
-        (item) => !item.catalogReference?.appId
-      );
-      if (missingAppIdItems.length > 0) {
-        console.error(
-          "Missing appId for the following items:",
-          missingAppIdItems
-        );
-        alert(
-          "One or more items are missing product information. Please try again."
-        );
-        return;
+      // 👉 Fire InitiateCheckout event BEFORE redirect
+      try {
+        const totalValue = (cart as any).subtotal.amount || 0;
+        fbqEvent.initiateCheckout(totalValue); // ✅ matches your fbpixel.ts
+      } catch (e) {
+        console.error("Pixel InitiateCheckout failed:", e);
       }
 
       const checkout =
@@ -66,15 +58,11 @@ const CartModal = () => {
       ) : (
         <>
           <h2 className="text-2xl">Shopping Cart</h2>
-          {/*LIST*/}
           <div className="flex flex-col gap-8">
-            {/*ITEMS*/}
             {cart.lineItems.map((item) => (
               <div className="flex gap-4" key={item._id}>
                 <div className="flex flex-col justify-between w-full">
-                  {/* TOP */}
-                  <div className="">
-                    {/* TITLE */}
+                  <div>
                     <div className="flex items-center justify-between gap-8">
                       <h3 className="font-semibold text-xl">
                         {item.productName?.original}
@@ -88,12 +76,10 @@ const CartModal = () => {
                         ₹{item.price?.amount}
                       </div>
                     </div>
-                    {/* DESC */}
                     <div className="text-md text-gray-300">
                       {item.availability?.status}
                     </div>
                   </div>
-                  {/* BOTTOM */}
                   <div className="flex justify-between text-md">
                     <span className="text-gray-400">Qty. {item.quantity}</span>
                     <span
@@ -108,11 +94,11 @@ const CartModal = () => {
               </div>
             ))}
           </div>
-          {/*BOTTOM*/}
-          <div className="">
+
+          <div>
             <div className="flex items-center justify-between font-semibold">
               <span className="font-normal text-xl">Subtotal</span>
-              <span className="">₹{(cart as any).subtotal.amount}</span>
+              <span>₹{(cart as any).subtotal.amount}</span>
             </div>
             <p className="text-gray-400 text-md mt-2 mb-4">
               Shipping and taxes calculated at checkout.
