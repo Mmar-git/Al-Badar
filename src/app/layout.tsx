@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Al Badar",
     images: [
       {
-        url: "https://al-badar.vercel.app/og-socialimage.png",
+        url: "https://al-badar.in/og-socialimage.png",
         width: 1200,
         height: 630,
         alt: "Al Badar Premium Attar Bottle",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Al Badar - Premium Artisanal Attar",
     description:
       "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients.",
-    images: ["https://al-badar.vercel.app/og-socialimage.png"],
+    images: ["https://al-badar.in/og-socialimage.png"],
   },
 };
 
