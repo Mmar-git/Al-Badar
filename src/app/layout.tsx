@@ -12,6 +12,30 @@ export const metadata: Metadata = {
   title: "Al Badar - Premium Artisanal Attar",
   description:
     "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients. Elevate your senses with our authentic, exclusive fragrances crafted for luxury and distinction.",
+  openGraph: {
+    title: "Al Badar - Premium Artisanal Attar",
+    description:
+      "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients. Elevate your senses with our authentic, exclusive fragrances crafted for luxury and distinction.",
+    url: "https://al-badar.in",
+    siteName: "Al Badar",
+    images: [
+      {
+        url: "https://al-badar.vercel.app/og-socialimage.png",
+        width: 1200,
+        height: 630,
+        alt: "Al Badar Premium Attar Bottle",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Al Badar - Premium Artisanal Attar",
+    description:
+      "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients.",
+    images: ["https://al-badar.vercel.app/og-socialimage.png"],
+  },
 };
 
 export default function RootLayout({
