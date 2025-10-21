@@ -76,14 +76,14 @@ const CartModal = () => {
                         ₹{item.price?.amount}
                       </div>
                     </div>
-                    <div className="text-md text-gray-300">
+                    <div className="text-md text-green-500">
                       {item.availability?.status}
                     </div>
                   </div>
-                  <div className="flex justify-between text-md">
+                  <div className="flex justify-between text-lg">
                     <span className="text-gray-400">Qty. {item.quantity}</span>
                     <span
-                      className="text-yellow-400"
+                      className="text-red-600"
                       style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
                       onClick={() => removeItem(wixClient, item._id!)}
                     >
@@ -98,17 +98,17 @@ const CartModal = () => {
           <div>
             <div className="flex items-center justify-between font-semibold">
               <span className="font-normal text-xl">Subtotal</span>
-              <span>₹{(cart as any).subtotal.amount}</span>
+              <span className="text-xl">₹{(cart as any).subtotal.amount}</span>
             </div>
             <p className="text-gray-400 text-md mt-2 mb-4">
-              Shipping and taxes calculated at checkout.
+              Shipping and taxes are calculated at checkout.
             </p>
             <div className="flex justify-between text-sm">
               <button className="rounded-md py-3 px-4 ring-1 ring-yellow hover:bg-yellow">
                 View Cart
               </button>
               <button
-                className="rounded-md py-3 px-4 bg-black hover:bg-yellow text-white disabled:cursor-not-allowed disabled:opacity-75"
+                className="rounded-md py-3 px-4 bg-yellow hover:bg-orange-500 text-white font-semibold disabled:cursor-not-allowed disabled:opacity-75"
                 disabled={isLoading}
                 onClick={handleCheckout}
               >

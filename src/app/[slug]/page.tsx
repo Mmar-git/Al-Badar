@@ -22,7 +22,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const product = products.items[0];
   let recommendedCategoryId = process.env.FEATURED_PRODUCTS_CATEGORY_ID!;
 
-  if (product.price?.discountedPrice === 399) {
+  if (product.price?.discountedPrice === 499) {
     recommendedCategoryId = process.env.EXPLORE_PRODUCTS_CATEGORY_ID!;
   }
   return (

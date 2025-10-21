@@ -137,7 +137,7 @@ const AboutPage = () => {
             alt="image"
             width={1000}
             height={1200}
-            className="h-[24rem] w-[24rem]"
+            className="h-auto w-[24rem]"
           />
           <div className="flex flex-col">
             <h2 className="text-[#B68D3B] text-3xl px-8 flex items-center">
@@ -166,7 +166,7 @@ const AboutPage = () => {
             alt="image"
             width={1000}
             height={1200}
-            className="h-[24rem] w-[24rem]"
+            className="h-auto w-[24rem]"
           />
           <div className="flex flex-col">
             <h2 className="text-[#B68D3B] text-3xl px-8 flex items-center">
@@ -189,7 +189,7 @@ const AboutPage = () => {
             alt="image"
             width={1000}
             height={1200}
-            className="h-[24rem] w-[24rem]"
+            className="h-auto w-[24rem]"
           />
           <div className="flex flex-col">
             <h2 className="text-[#B68D3B] text-3xl px-8 flex items-center">
@@ -216,7 +216,7 @@ const AboutPage = () => {
             alt="image"
             width={1000}
             height={1200}
-            className="h-[24rem] w-[24rem]"
+            className="h-auto w-[24rem]"
           />
           <div className="flex flex-col">
             <h2 className="text-[#B68D3B] text-3xl px-8 flex items-center">

@@ -1,6 +1,7 @@
 import Categories from "@/components/Categories";
 import ProductList from "@/components/ProductList";
 import Slider from "@/components/Slider";
+import Slider3 from "@/components/Slider3";
 import Skeleton from "@/components/Skeleton";
 import { WixClientContext } from "@/context/wixContext";
 import { useWixClient } from "@/hooks/useWixClient";
@@ -60,7 +61,24 @@ const HomePage = async () => {
             fontFamily: '"Alumni Sans Pinstripe", serif',
           }}
         >
-          Featured Products
+          A Taste of Elegance
+        </h1>
+        <Suspense fallback={<Skeleton />}>
+          <FeaturedProducts
+            categoryId={process.env.TWELVE_ML_PRODUCTS_CATEGORY_ID!}
+            limit={4}
+          />
+        </Suspense>
+      </div>
+      <Slider2 />
+      <div className="p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
+        <h1
+          className="text-3xl"
+          style={{
+            fontFamily: '"Alumni Sans Pinstripe", serif',
+          }}
+        >
+          Own the Essence of Luxury
         </h1>
         <Suspense fallback={<Skeleton />}>
           <FeaturedProducts
@@ -69,7 +87,6 @@ const HomePage = async () => {
           />
         </Suspense>
       </div>
-      <Slider2 />
       <div className="h-26 px-4 py-4 bg-[#040404]">
         <div className="flex flex-col items-center text-center max-w-full justify-center bg-[#040404] border border-[#B68D3B] overflow-hidden p-4 gap-0.5">
           <p
@@ -90,6 +107,7 @@ const HomePage = async () => {
           </p>
         </div>
       </div>
+      {/* <Slider3 /> */}
       {/* <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
         <h1 className="text-2xl">Featured Products</h1>
         <Suspense fallback={"Loading"}>
