@@ -88,13 +88,21 @@ const HomePage = async () => {
       <div className="relative p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
         <div className="flex items-center justify-between mb-6">
           <h1
-            className="text-3xl"
+            className="flex md:hidden text-3xl"
             style={{
               fontFamily: '"Alumni Sans Pinstripe", serif',
             }}
           >
             Own the Essence Of <br />
             Luxury
+          </h1>
+          <h1
+            className="hidden md:flex text-3xl"
+            style={{
+              fontFamily: '"Alumni Sans Pinstripe", serif',
+            }}
+          >
+            Own the Essence Of Luxury
           </h1>
           <Link href="/products50ml">
             <button
