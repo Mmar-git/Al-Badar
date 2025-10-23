@@ -26,6 +26,8 @@ const Navbar = () => {
     "/shipping",
     "/terms",
     "/tips",
+    "/products12ml",
+    "/products50ml",
   ];
   const isAbsolute = absolutePaths.includes(pathname || "");
   return (

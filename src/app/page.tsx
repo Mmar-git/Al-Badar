@@ -10,7 +10,7 @@ import { wixClientServer } from "@/lib/wixClientServer";
 import Slider2 from "@/components/Slider2";
 import ExploreProd from "@/components/ExploreProd";
 import FeaturedProducts from "@/components/FeaturedProducts";
-
+import Link from "next/link";
 const HomePage = async () => {
   // const wixClient = useWixClient();
 
@@ -54,15 +54,28 @@ const HomePage = async () => {
           </a>
         </div>
       </div>
-      <div className="p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
-        <h1
-          className="text-3xl"
-          style={{
-            fontFamily: '"Alumni Sans Pinstripe", serif',
-          }}
-        >
-          A Taste of Elegance
-        </h1>
+      <div className="relative p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
+        <div className="flex items-center justify-between mb-6">
+          <h1
+            className="text-3xl"
+            style={{
+              fontFamily: '"Alumni Sans Pinstripe", serif',
+            }}
+          >
+            A Taste of Elegance
+          </h1>
+          <Link href="/products12ml">
+            <button
+              className="w-32 rounded-md border border-white text-white bg-transparent py-3 px-4 text-xl hover:bg-white hover:text-black transition-colors duration-300"
+              style={{
+                fontFamily: '"Alumni Sans Pinstripe", serif',
+              }}
+            >
+              SHOW MORE
+            </button>
+          </Link>
+        </div>
+
         <Suspense fallback={<Skeleton />}>
           <FeaturedProducts
             categoryId={process.env.TWELVE_ML_PRODUCTS_CATEGORY_ID!}
@@ -70,16 +83,31 @@ const HomePage = async () => {
           />
         </Suspense>
       </div>
+
       <Slider2 />
-      <div className="p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
-        <h1
-          className="text-3xl"
-          style={{
-            fontFamily: '"Alumni Sans Pinstripe", serif',
-          }}
-        >
-          Own the Essence of Luxury
-        </h1>
+      <div className="relative p-8 md:p-2 lg:p-8 xl:p-12 2xl:p-16">
+        <div className="flex items-center justify-between mb-6">
+          <h1
+            className="text-3xl"
+            style={{
+              fontFamily: '"Alumni Sans Pinstripe", serif',
+            }}
+          >
+            Own the Essence Of <br />
+            Luxury
+          </h1>
+          <Link href="/products50ml">
+            <button
+              className="w-32 rounded-md border border-white text-white bg-transparent py-3 px-4 text-xl hover:bg-white hover:text-black transition-colors duration-300"
+              style={{
+                fontFamily: '"Alumni Sans Pinstripe", serif',
+              }}
+            >
+              SHOW MORE
+            </button>
+          </Link>
+        </div>
+
         <Suspense fallback={<Skeleton />}>
           <FeaturedProducts
             categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
