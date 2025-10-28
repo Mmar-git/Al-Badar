@@ -52,7 +52,7 @@ export default function RootLayout({
           <Footer />
         </WixClientContextProvider>
 
-        {/* Facebook Pixel Script */}
+        {/* ✅ Facebook Pixel with Manual Advanced Matching */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -63,7 +63,14 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1078070014412249');
+
+            // Example of manual advanced matching
+            // Replace with actual dynamic user data when available
+            fbq('init', '1078070014412249', {
+              em: 'email@example.com', // will be hashed automatically
+              ph: '1234567890'         // will be hashed automatically
+            });
+
             fbq('track', 'PageView');
           `}
         </Script>
