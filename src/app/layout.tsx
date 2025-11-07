@@ -36,6 +36,9 @@ export const metadata: Metadata = {
       "Discover Al Badar's luxurious artisanal attars, handcrafted with time-honored tradition and premium ingredients.",
     images: ["https://al-badar.in/og-socialimage.png"],
   },
+  other: {
+    "google-site-verification": "efiN6B1YKfU5eu9u6h83QlRquW1XNPMOv_TpX0JSxOk",
+  },
 };
 
 export default function RootLayout({
